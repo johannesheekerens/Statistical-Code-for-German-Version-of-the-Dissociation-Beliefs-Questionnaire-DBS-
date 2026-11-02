@@ -1,0 +1,323 @@
+Mplus VERSION 9
+MUTHEN & MUTHEN
+11/02/2026   2:06 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:  Reliability - German Version of the Dissociation Beliefs Scale (DBS)
+
+  DATA:   FILE = cfa.txt;
+
+  VARIABLE:
+          NAMES = id dbs1-dbs16;
+          USEVARIABLES = dbs1 dbs2 dbs3 dbs5 dbs7 dbs13 dbs15 dbs16;
+          MISSING = *;
+
+  ANALYSIS:
+          ESTIMATOR = MLR;
+
+  MODEL:
+          ! measurement model
+          dbs_pos BY dbs1*  (load1)
+                     dbs2   (load2)
+                     dbs3   (load3)
+                     dbs5   (load4)
+                     dbs7   (load5)
+                     dbs13  (load6)
+                     dbs15  (load7)
+                     dbs16  (load8);
+          dbs_pos@1;
+
+          ! residual variances
+          dbs1   (resv1);
+          dbs2   (resv2);
+          dbs3   (resv3);
+          dbs5   (resv4);
+          dbs7   (resv5);
+          dbs13  (resv6);
+          dbs15  (resv7);
+          dbs16  (resv8);
+
+  MODEL CONSTRAINT:
+          NEW(omega);
+          omega = (load1+load2+load3+load4+load5+load6+load7+load8)^2 /
+                  ((load1+load2+load3+load4+load5+load6+load7+load8)^2 +
+                   resv1+resv2+resv3+resv4+resv5+resv6+resv7+resv8);
+
+  OUTPUT: CINTERVAL;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+Reliability - German Version of the Dissociation Beliefs Scale (DBS)
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1072
+
+Number of dependent variables                                    8
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   DBS1        DBS2        DBS3        DBS5        DBS7        DBS13
+   DBS15       DBS16
+
+Continuous latent variables
+   DBS_POS
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  cfa.txt
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              DBS1          DBS2          DBS3          DBS5          DBS7
+              ________      ________      ________      ________      ________
+ DBS1           1.000
+ DBS2           1.000         1.000
+ DBS3           1.000         1.000         1.000
+ DBS5           1.000         1.000         1.000         1.000
+ DBS7           1.000         1.000         1.000         1.000         1.000
+ DBS13          1.000         1.000         1.000         1.000         1.000
+ DBS15          1.000         1.000         1.000         1.000         1.000
+ DBS16          1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              DBS13         DBS15         DBS16
+              ________      ________      ________
+ DBS13          1.000
+ DBS15          1.000         1.000
+ DBS16          1.000         1.000         1.000
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     DBS1                  2.952      -0.233       1.000   20.24%       1.000      3.000      3.000
+            1072.000       1.700      -1.264       5.000    8.40%       4.000      4.000
+     DBS2                  2.831      -0.136       1.000   25.65%       1.000      2.000      3.000
+            1072.000       1.812      -1.389       5.000    7.56%       4.000      4.000
+     DBS3                  2.748       0.031       1.000   26.21%       1.000      2.000      3.000
+            1072.000       1.828      -1.378       5.000    8.40%       3.000      4.000
+     DBS5                  2.248       0.515       1.000   42.44%       1.000      1.000      2.000
+            1072.000       1.644      -1.084       5.000    4.20%       3.000      4.000
+     DBS7                  2.265       0.457       1.000   41.70%       1.000      1.000      2.000
+            1072.000       1.626      -1.186       5.000    3.36%       3.000      4.000
+     DBS13                 2.090       0.677       1.000   47.48%       1.000      1.000      2.000
+            1072.000       1.489      -0.852       5.000    2.89%       2.000      3.000
+     DBS15                 2.322       0.484       1.000   47.20%       1.000      1.000      2.000
+            1072.000       2.062      -1.343       5.000    7.28%       3.000      4.000
+     DBS16                 2.042       0.766       1.000   50.00%       1.000      1.000      1.500
+            1072.000       1.475      -0.649       5.000    3.54%       2.000      3.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       24
+
+Loglikelihood
+
+          H0 Value                      -12757.061
+          H0 Scaling Correction Factor      0.9670
+            for MLR
+          H1 Value                      -12562.333
+          H1 Scaling Correction Factor      1.1127
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   25562.122
+          Bayesian (BIC)                 25681.577
+          Sample-Size Adjusted BIC       25605.348
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            302.481*
+          Degrees of Freedom                    20
+          P-Value                           0.0000
+          Scaling Correction Factor         1.2875
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.115
+          90 Percent C.I.                    0.104  0.126
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.898
+          TLI                                0.857
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           2789.117
+          Degrees of Freedom                    28
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.054
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ DBS_POS  BY
+    DBS1               0.993      0.031     31.585      0.000
+    DBS2               1.013      0.035     28.849      0.000
+    DBS3               1.019      0.032     31.410      0.000
+    DBS5               0.893      0.033     26.906      0.000
+    DBS7               0.752      0.033     22.941      0.000
+    DBS13              0.703      0.036     19.654      0.000
+    DBS15              1.050      0.033     31.915      0.000
+    DBS16              0.756      0.037     20.344      0.000
+
+ Intercepts
+    DBS1               2.952      0.040     74.136      0.000
+    DBS2               2.831      0.041     68.863      0.000
+    DBS3               2.748      0.041     66.543      0.000
+    DBS5               2.248      0.039     57.414      0.000
+    DBS7               2.265      0.039     58.161      0.000
+    DBS13              2.090      0.037     56.091      0.000
+    DBS15              2.322      0.044     52.946      0.000
+    DBS16              2.042      0.037     55.051      0.000
+
+ Variances
+    DBS_POS            1.000      0.000    999.000    999.000
+
+ Residual Variances
+    DBS1               0.713      0.045     15.786      0.000
+    DBS2               0.786      0.057     13.703      0.000
+    DBS3               0.790      0.050     15.770      0.000
+    DBS5               0.846      0.048     17.570      0.000
+    DBS7               1.060      0.047     22.418      0.000
+    DBS13              0.995      0.047     21.092      0.000
+    DBS15              0.959      0.056     17.090      0.000
+    DBS16              0.903      0.054     16.697      0.000
+
+New/Additional Parameters
+    OMEGA              0.880      0.006    157.065      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.322E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ DBS_POS  BY
+    DBS1             0.912       0.932       0.942       0.993       1.045       1.055       1.074
+    DBS2             0.923       0.944       0.955       1.013       1.071       1.082       1.103
+    DBS3             0.935       0.955       0.966       1.019       1.072       1.083       1.103
+    DBS5             0.808       0.828       0.839       0.893       0.948       0.958       0.979
+    DBS7             0.668       0.688       0.698       0.752       0.806       0.816       0.837
+    DBS13            0.611       0.633       0.644       0.703       0.762       0.773       0.795
+    DBS15            0.965       0.986       0.996       1.050       1.104       1.114       1.135
+    DBS16            0.661       0.683       0.695       0.756       0.818       0.829       0.852
+
+ Intercepts
+    DBS1             2.850       2.874       2.887       2.952       3.018       3.030       3.055
+    DBS2             2.725       2.751       2.764       2.831       2.899       2.912       2.937
+    DBS3             2.642       2.667       2.680       2.748       2.816       2.829       2.855
+    DBS5             2.147       2.171       2.184       2.248       2.313       2.325       2.349
+    DBS7             2.165       2.189       2.201       2.265       2.329       2.341       2.365
+    DBS13            1.994       2.017       2.029       2.090       2.152       2.164       2.186
+    DBS15            2.209       2.236       2.250       2.322       2.394       2.408       2.435
+    DBS16            1.946       1.969       1.981       2.042       2.103       2.115       2.138
+
+ Variances
+    DBS_POS          1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+ Residual Variances
+    DBS1             0.597       0.625       0.639       0.713       0.788       0.802       0.830
+    DBS2             0.638       0.674       0.692       0.786       0.880       0.898       0.934
+    DBS3             0.661       0.692       0.708       0.790       0.872       0.888       0.919
+    DBS5             0.722       0.751       0.766       0.846       0.925       0.940       0.970
+    DBS7             0.938       0.967       0.982       1.060       1.138       1.153       1.182
+    DBS13            0.873       0.902       0.917       0.995       1.072       1.087       1.116
+    DBS15            0.815       0.849       0.867       0.959       1.051       1.069       1.104
+    DBS16            0.764       0.797       0.814       0.903       0.992       1.009       1.042
+
+New/Additional Parameters
+    OMEGA            0.865       0.869       0.870       0.880       0.889       0.891       0.894
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\johan\onedrive - charité - universitätsmedizin berlin\1 current papers\german dissociative beliefs scale\2
+
+     Beginning Time:  14:06:48
+        Ending Time:  14:06:48
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2025 Muthen & Muthen
